@@ -18,16 +18,16 @@ class User {
     }
 
   public function getUserByUsername($username){
-     $db = db_connect();
+    $db = db_connect();
     $statement = $db->prepare("SELECT * FROM users WHERE username = :name;");
-     $statement->bindValue(':name', $username);
+    $statement->bindValue(':name', $username);
     $statement->execute();
     return $statement->fetch(PDO::FETCH_ASSOC);
 
   }
 
    public function logAttempt($username, $status){
-      $db = db_connect();
+     $db = db_connect();
      $statement = $db->prepare("INSERT INTO log (username, attempt, attempt_time) VALUES (:username, :attempt, NOW())");
      $statement->bindValue(':username', $username);
      $statement->bindValue(':attempt', $status);

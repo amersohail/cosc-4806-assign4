@@ -9,7 +9,7 @@ class Reminder {
       $db = db_connect();
       $statement = $db->prepare("select * from reminders;");
       $statement->execute();
-      $rows = $statement->fetch(PDO::FETCH_ASSOC);
+      $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
       return is_array($rows) ? $rows : [$rows];
     }
 
@@ -18,8 +18,6 @@ class Reminder {
       $query = $db->prepare("INSERT INTO reminders (user_id, subject) VALUES (?, ?)");
       return $query->execute([$user_id, $subject]);
   }
-
-  
 }
 
 ?>

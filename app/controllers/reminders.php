@@ -17,6 +17,10 @@ class Reminders extends Controller {
           $user_id = $_SESSION['user_id'];
           $subject = $_POST['subject'];
 
+          // Debugging: Log the values
+          error_log("User ID: " . $user_id);
+          error_log("Subject: " . $subject);
+          
           $reminder = $this->model('Reminder');
           $reminder->create_reminder($user_id, $subject);
 

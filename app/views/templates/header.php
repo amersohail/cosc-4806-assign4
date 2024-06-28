@@ -27,7 +27,6 @@ if (!isset($_SESSION['auth'])) {
             <div class="navbar-nav">
               <a class="nav-link" aria-current="page" href="index.php">Home</a>
               <a class="nav-link" href="reminders">Reminders</a>
-              <a class="nav-link" href="#">Nav 2</a>
             </div>
           </div>
         </div>
