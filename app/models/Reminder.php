@@ -13,6 +13,14 @@ class Reminder {
       return is_array($rows) ? $rows : [$rows];
     }
 
+    public function get_reminder_by_id($id) {
+        $db = db_connect();
+        $statement = $db->prepare("SELECT * FROM reminders WHERE id = :id AND deleted = 0");
+        $statement->bindParam(':id', $id, PDO::PARAM_INT);
+        $statement->execute();
+        return $statement->fetch(PDO::FETCH_ASSOC);
+    }
+    
     public function create_reminder($user_id, $subject) {
           $db = db_connect();
           $query = $db->prepare("INSERT INTO reminders (user_id, subject) VALUES (?, ?)");
