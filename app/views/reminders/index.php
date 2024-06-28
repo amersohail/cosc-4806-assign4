@@ -8,18 +8,9 @@ session_start();
 
 <div class="container">
     <div class="page-header" id="banner">
-     
-
         <div class="container mt-5">
             <h1 class="mb-4">Reminders List</h1>
-
-            <?php
-            // Debugging: Print the structure of $data['reminders']
-            echo '<pre>';
-            print_r($data['reminders']);
-            echo '</pre>';
-            ?>
-
+            
             <table class="table table-bordered table-striped">
                 <thead class="thead-dark">
                     <tr>
@@ -30,7 +21,11 @@ session_start();
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($data['reminders'] as $reminder): ?>
+                    <?php 
+                    // Check if reminders is a single element or multiple
+                    $reminders = isset($data['reminders'][0]) ? $data['reminders'] : [$data['reminders']];
+
+                    foreach ($reminders as $reminder): ?>
                         <tr>
                             <td><?= htmlspecialchars($reminder['subject']); ?></td>
                             <td><?= htmlspecialchars($reminder['created_at']); ?></td>
