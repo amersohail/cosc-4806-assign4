@@ -13,9 +13,13 @@ class Reminder {
       return is_array($rows) ? $rows : [$rows];
     }
 
-    public function update_reminder ($reminder_id) {
-      
-    }
+  public function create_reminder($user_id, $subject) {
+      $db = db_connect();
+      $query = $db->prepare("INSERT INTO reminders (user_id, subject) VALUES (?, ?)");
+      return $query->execute([$user_id, $subject]);
+  }
+
+  
 }
 
 ?>
