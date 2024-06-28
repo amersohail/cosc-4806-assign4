@@ -10,6 +10,7 @@ session_start();
         <div class="container mt-5">
             <h1 class="mb-4">Reminders List</h1>
             <a href="/reminders/create" class="btn btn-primary mb-3">Create Reminder</a>
+            <a href="/reminders/edit" class="btn btn-secondary mb-3">Update/Delete Reminders</a>
             <table class="table table-bordered table-striped">
                 <thead class="thead-dark">
                     <tr>

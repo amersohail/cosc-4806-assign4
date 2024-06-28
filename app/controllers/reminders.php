@@ -12,6 +12,14 @@ class Reminders extends Controller {
       $this->view('reminders/create');
   }
 
+    public function edit() {
+        $reminder = $this->model('Reminder');
+        $reminders_list = $reminder->get_all_reminders();
+        // Pass the reminders to the view
+        $this->view('reminders/update', ['reminders' => $reminders_list]);
+        
+    }
+    
   public function store() {
       if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           $user_id = $_SESSION['user_id'];
