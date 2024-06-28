@@ -65,6 +65,7 @@ class User {
       if ($user && password_verify($password, $user['password'])){
         $_SESSION['auth'] = 1;
         $_SESSION['username'] = ucwords($username);
+        $_SESSION['user_id'] = $user['id']; // Store user ID in session
         $this->logAttempt($username, 'good');
         header('Location: /home');
         exit();
@@ -76,10 +77,5 @@ class User {
         exit();
         
       }
-
-                                
-      
-      
     }
-
 }
