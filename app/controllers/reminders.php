@@ -29,6 +29,32 @@ class Reminders extends Controller {
           $this->create();
       }
   }
+
+    public function update() {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $id = $_POST['id'];
+            $subject = $_POST['subject'];
+            $completed = isset($_POST['completed']) ? 1 : 0;
+
+            $reminder = $this->model('Reminder');
+            $reminder->update_reminder($id, $subject, $completed);
+
+            header('Location: /reminders');
+            exit();
+        } 
+    }
+
+    public function delete() {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $id = $_POST['id'];
+
+            $reminder = $this->model('Reminder');
+            $reminder->delete_reminder($id);
+
+            header('Location: /reminders');
+            exit();
+        }
+    }
 }
 
 ?>

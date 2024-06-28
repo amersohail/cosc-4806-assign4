@@ -13,11 +13,28 @@ class Reminder {
       return is_array($rows) ? $rows : [$rows];
     }
 
-  public function create_reminder($user_id, $subject) {
-      $db = db_connect();
-      $query = $db->prepare("INSERT INTO reminders (user_id, subject) VALUES (?, ?)");
-      return $query->execute([$user_id, $subject]);
-  }
+    public function create_reminder($user_id, $subject) {
+          $db = db_connect();
+          $query = $db->prepare("INSERT INTO reminders (user_id, subject) VALUES (?, ?)");
+          return $query->execute([$user_id, $subject]);
+    }
+    
+    public function update_reminder($id, $subject, $completed) {
+        $db = db_connect();
+        $statement = $db->prepare("UPDATE reminders SET subject = :subject, completed = :completed WHERE id = :id");
+        $statement->bindParam(':subject', $subject, PDO::PARAM_STR);
+        $statement->bindParam(':completed', $completed, PDO::PARAM_INT);
+        $statement->bindParam(':id', $id, PDO::PARAM_INT);
+        $statement->execute();
+    }
+    
+    //not deleting the row, just setting the delete column value to true.
+    public function delete_reminder($id) {
+        $db = db_connect();
+        $statement = $db->prepare("UPDATE reminders SET deleted = 1 WHERE id = :id");
+        $statement->bindParam(':id', $id, PDO::PARAM_INT);
+        $statement->execute();
+    }
 }
 
 ?>
