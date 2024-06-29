@@ -19,7 +19,7 @@
         <input required type="password" class="form-control" name="confirm_password">
       </div>
             <br>
-        <button type="submit" value="Register" class="btn btn-primary">Login</button>
+        <button type="submit" value="Register" class="btn btn-primary">Register</button>
     </fieldset>
     </form> 
   </div>
