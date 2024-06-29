@@ -7,7 +7,7 @@ class Reminder {
 
     public function get_all_reminders () {
       $db = db_connect();
-      $statement = $db->prepare("select * from reminders;");
+      $statement = $db->prepare("SELECT * FROM reminders WHERE deleted IS NULL OR deleted = '' OR deleted = 0;");
       $statement->execute();
       $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
       return is_array($rows) ? $rows : [$rows];

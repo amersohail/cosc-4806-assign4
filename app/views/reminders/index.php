@@ -17,7 +17,6 @@ session_start();
                         <th scope="col">Subject</th>
                         <th scope="col">Created At</th>
                         <th scope="col">Completed</th>
-                        <th scope="col">Deleted</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -29,8 +28,9 @@ session_start();
                         <tr>
                             <td><?= htmlspecialchars($reminder['subject']); ?></td>
                             <td><?= htmlspecialchars($reminder['created_at']); ?></td>
-                            <td><?= htmlspecialchars($reminder['completed']); ?></td>
-                            <td><?= htmlspecialchars($reminder['deleted']); ?></td>
+                            <td>
+                                <?= $reminder['completed'] ? 'Yes' : 'No'; ?>
+                            </td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
